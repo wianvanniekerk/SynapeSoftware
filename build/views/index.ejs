@@ -9,128 +9,93 @@
     <link rel="alternate icon" href="../media/icon.png" type="image/png">
     <script src="../code/id-transitions.js"></script>
     <script src="../code/contact.js"></script>
-    <style>
-        #popup {
-            z-index: 1000;
-            max-width: 90%;
-            width: 300px;
-        }
-        #popup.show {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-        #popup.success {
-            background-color: #4CAF50;
-            color: white;
-        }
-        #popup.error {
-            background-color: #F44336;
-            color: white;
-        }
-    </style>
-    
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-        .hero-section {
-            background-image: url('https://images.unsplash.com/photo-1510915228340-29c85a43dcfe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-        .hero-overlay {
-            background: rgba(0, 0, 0, 0.5);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        .text-gradient {
-            background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #45B7D1);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-    </style>
-    <style>
-        .logo-container svg {
-          width: auto;
-          height: 100%;
-        }
-      </style>
+    <script src="../code/dropdown.js"></script>
 </head>
 <body class="bg-gray-900 text-white">
-    <header class="absolute w-full z-10">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="h-16 w-auto">
-                <a href="/"><img src="../media/logo.svg" alt="SENPROD Logo" class="h-full w-auto"></a>
+    <header class="absolute w-full z-50">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="h-16 w-auto">
+                    <a href="/"><img src="../media/logo.svg" alt="SENPROD Logo" class="h-full w-auto"></a>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="/" class="text-white hover:text-gray-300 transition duration-300">Home</a>
+                    <a href="#services" class="text-white hover:text-gray-300 transition duration-300">Services</a>
+                    <a href="/about" class="text-white hover:text-gray-300 transition duration-300">About</a>
+                    <a href="#contact" class="text-white hover:text-gray-300 transition duration-300">Contact</a>
+                </div>
+                <button id="mobile-menu-button" class="md:hidden focus:outline-none z-60">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
             </div>
-            <div class="hidden md:flex space-x-8">
-                <a href="/" class="hover:text-gray-300 transition duration-300">Home</a>
-                <a href="#services" class="hover:text-gray-300 transition duration-300">Services</a>
-                <a href="/about" class="hover:text-gray-300 transition duration-300">About</a>
-                <a href="#contact" class="hover:text-gray-300 transition duration-300">Contact</a>
-            </div>
-            <button class="md:hidden focus:outline-none">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                </svg>
-            </button>
         </nav>
     </header>
+
+    <div id="mobile-menu" class="text-black fixed inset-0 bg-white z-50 hidden md:hidden">
+        <div class="flex flex-col justify-center items-center h-full text-2xl space-y-8">
+            <a href="/" class="text-black hover:text-gray-600 transition duration-300">Home</a>
+            <a href="#services" class="text-black hover:text-gray-600 transition duration-300">Services</a>
+            <a href="/about" class="text-black hover:text-gray-600 transition duration-300">About</a>
+            <a href="#contact" class="text-black hover:text-gray-600 transition duration-300">Contact</a>
+        </div>
+        <button id="close-menu-button" class="absolute top-4 right-6 focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
 
     <main>
         <section class="hero-section min-h-screen flex items-center relative">
             <div class="hero-overlay"></div>
-            <div class="container mx-auto px-6 text-center relative z-10">
-                <h1 class="text-6xl font-bold mb-6 leading-tight">
-                    <span class="text-gradient">Your Vision, Our Software</span><br>
+            <div class="container mx-auto px-4 sm:px-6 text-center relative z-10">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                    <span class="text-gradient">Your Vision,<br class="md:hidden"> Our Software</span>
                 </h1>
-                <p class="text-2xl mb-10 text-gray-300"></p>
-                <a href="#services" class="bg-white text-gray-900 py-3 px-8 rounded-full text-lg font-semibold shadow-lg hover:bg-gray-200 transition duration-300 inline-block">Explore Our Solutions</a>
+                <p class="text-xl sm:text-2xl mb-10 text-gray-300"></p>
+                <a href="#services" class="bg-white text-gray-900 py-3 px-6 sm:px-8 rounded-full text-base sm:text-lg font-semibold shadow-lg hover:bg-gray-200 transition duration-300 inline-block">Explore Our Solutions</a>
             </div>
             <div class="absolute inset-0 bg-black opacity-50"></div>
         </section>
-
-        <section id="services" class="py-24 bg-gray-800">
-            <div class="container mx-auto px-6">
-                <h2 class="text-4xl font-bold text-center mb-12 text-white">Our Services</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                    <a href="/mobile">
-                        <div class="bg-black bg-opacity-20 rounded-lg shadow-lg p-8 hover:shadow-xl transition duration-300 transform hover:-translate-y-2 backdrop-filter backdrop-blur-lg">
-                            <i class="fas fa-mobile-alt text-5xl text-white mb-6"></i>
-                            <h3 class="text-2xl font-semibold mb-4 text-white">Mobile Development</h3>
-                            <p class="text-gray-200">Create responsive mobile applications for iOS and Android platforms.</p>
+        
+        <section id="services" class="py-16 sm:py-24 bg-gray-800">
+            <div class="container mx-auto px-4 sm:px-6">
+                <h2 class="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 text-white">Our Services</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12">
+                    <a href="/mobile" class="block">
+                        <div class="bg-black bg-opacity-20 rounded-lg shadow-lg p-6 sm:p-8 hover:shadow-xl transition duration-300 transform hover:-translate-y-2 backdrop-filter backdrop-blur-lg h-full">
+                            <i class="fas fa-mobile-alt text-4xl sm:text-5xl text-white mb-4 sm:mb-6"></i>
+                            <h3 class="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-white">Mobile Development</h3>
+                            <p class="text-gray-200 text-sm sm:text-base">Create responsive mobile applications for iOS and Android platforms.</p>
                         </div>
                     </a>
-                    <a href="/web">
-                        <div class="bg-black bg-opacity-20 rounded-lg shadow-lg p-8 hover:shadow-xl transition duration-300 transform hover:-translate-y-2 backdrop-filter backdrop-blur-lg">
-                            <i class="fas fa-laptop-code text-5xl text-white mb-6"></i>
-                            <h3 class="text-2xl font-semibold mb-4 text-white">Web Solutions</h3>
-                            <p class="text-gray-200">Develop scalable web applications using the latest technologies.</p>
+                    <a href="/web" class="block">
+                        <div class="bg-black bg-opacity-20 rounded-lg shadow-lg p-6 sm:p-8 hover:shadow-xl transition duration-300 transform hover:-translate-y-2 backdrop-filter backdrop-blur-lg h-full">
+                            <i class="fas fa-laptop-code text-4xl sm:text-5xl text-white mb-4 sm:mb-6"></i>
+                            <h3 class="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-white">Web Solutions</h3>
+                            <p class="text-gray-200 text-sm sm:text-base">Develop scalable web applications using the latest technologies.</p>
                         </div>
                     </a>
-                    <a href="/ai">
-                        <div class="bg-black bg-opacity-20 rounded-lg shadow-lg p-8 hover:shadow-xl transition duration-300 transform hover:-translate-y-2 backdrop-filter backdrop-blur-lg">
-                            <i class="fas fa-brain text-5xl text-white mb-6"></i>
-                            <h3 class="text-2xl font-semibold mb-4 text-white">AI & Machine Learning</h3>
-                            <p class="text-gray-200">Explore the power of artificial intelligence to drive growth in your business.</p>
+                    <a href="/ai" class="block">
+                        <div class="bg-black bg-opacity-20 rounded-lg shadow-lg p-6 sm:p-8 hover:shadow-xl transition duration-300 transform hover:-translate-y-2 backdrop-filter backdrop-blur-lg h-full">
+                            <i class="fas fa-brain text-4xl sm:text-5xl text-white mb-4 sm:mb-6"></i>
+                            <h3 class="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-white">AI & Machine Learning</h3>
+                            <p class="text-gray-200 text-sm sm:text-base">Explore the power of artificial intelligence to drive growth in your business.</p>
                         </div>
                     </a>
                 </div>
             </div>
         </section>
-
-        <section class="py-24">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-4xl font-bold mb-12 text-white">Trusted by Industry Leaders</h2>
-                <div class="flex flex-wrap justify-center items-center space-x-16">
-                    <img src="../media/sustainamet-logo.jpg" alt="Company Logo 1" class="rounded-md h-16 hover:opacity-70 transition duration-300">
-                    <img src="../media/tranquility-logo.png" alt="Company Logo 2" class="rounded-md h-16 hover:opacity-70 transition duration-300">
-                    <img src="../media/pd-logo.png" alt="Company Logo 3" class="rounded-md h-16 hover:opacity-70 transition duration-300">
+        
+        <section class="py-16 sm:py-24 bg-gray-800">
+            <div class="container mx-auto px-4 sm:px-6 text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 text-white">Trusted by Industry Leaders</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 items-center justify-items-center">
+                    <img src="../media/sustainamet-logo.jpg" alt="Company Logo 1" class="rounded-md h-12 sm:h-16 w-auto object-contain hover:opacity-70 transition duration-300">
+                    <img src="../media/tranquility-logo.png" alt="Company Logo 2" class="rounded-md h-12 sm:h-16 w-auto object-contain hover:opacity-70 transition duration-300">
+                    <img src="../media/pd-logo.png" alt="Company Logo 3" class="rounded-md h-12 sm:h-16 w-auto object-contain hover:opacity-70 transition duration-300">
                 </div>
             </div>
         </section>

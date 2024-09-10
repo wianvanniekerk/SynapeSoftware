@@ -26,6 +26,14 @@ app.use('/', webRoutes);
 app.use('/', contactRoutes);
 app.use('/', aboutRoutes);
 
+app.use((req, res, next) => {
+    if (req.hostname.startsWith('www.')) {
+      const newUrl = `https://${req.hostname.slice(4)}${req.originalUrl}`;
+      return res.redirect(301, newUrl);
+    }
+    next();
+});
+
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something went wrong!');
