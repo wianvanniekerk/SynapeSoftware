@@ -21,14 +21,17 @@
             background-position: center;
             background-attachment: fixed;
         }
+        @media (max-width: 768px) {
+            .hero-section {
+                background-attachment: scroll;
+            }
+        }
         .text-gradient {
             background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #45B7D1);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
-    </style>
-    <style>
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -47,9 +50,9 @@
 </head>
 <body class="bg-gray-900 text-white">
     <header class="absolute w-full z-50">
-        <nav class="container mx-auto px-6 py-4">
+        <nav class="container mx-auto px-4 sm:px-6 py-2 sm:py-4">
             <div class="flex justify-between items-center">
-                <div class="h-16 w-auto">
+                <div class="h-12 sm:h-16 w-auto">
                     <a href="/"><img src="../media/logo.svg" alt="SENPROD Logo" class="h-full w-auto"></a>
                 </div>
                 <div class="hidden md:flex space-x-8">
