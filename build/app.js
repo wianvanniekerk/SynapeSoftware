@@ -3,14 +3,6 @@ const path = require('path');
 const port = process.env.PORT || 3000;
 const app = express();
 
-app.use((req, res, next) => {
-    if (req.hostname.startsWith('www.')) {
-        const newUrl = `https://${req.hostname.slice(4)}${req.originalUrl}`;
-        return res.redirect(301, newUrl);
-    }
-    next();
-});
-
 const indexRoutes = require('./routes/index.routes.js');
 const aiRoutes = require('./routes/ai.routes.js');
 const mobileRoutes = require('./routes/mobile.routes.js');
